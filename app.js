@@ -29,21 +29,27 @@ const Todo = require("./models/mysql/Todo")(connection, sequelize);
 connection.sync();
 
 
+
 const checkUser = async (req, res, next) => {
   const user = req.get("user");
-  console.log(user);
-  var result = await User.find({ "username": user });
-  console.log(result.length);
+  var result = await User.findAll({ where:{"username": user} });
   if (!result.length) {
     res.send({ "status": "error", "msg": "user not exist" })
     return
   }
-  req.userId = result[0]._id;
+  req.userId = result[0].id;
   console.log(req.userId);
 
   next();
 }
 
+//Routes
+//get todo info
+app.get('/get-all',checkUser, async (req, res) => {
+  const userId = req.userId.toString();
+  const todo = await Todo.findAll({where: {userId}});
+  res.send(todo);
+})
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
