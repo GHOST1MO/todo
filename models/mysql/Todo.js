@@ -5,7 +5,7 @@ module.exports = (connection, sequelize) => {
       allowNull: false
     },
     userId: {
-      type: sequelize.STRING,
+      type: sequelize.INTEGER,
       allowNull: false
     },
     done: {
