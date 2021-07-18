@@ -1,5 +1,4 @@
 const express = require('express')
-const mongoose = require('mongoose')
 const sequelize = require("sequelize");
 const connection = new sequelize('todo', 'root', '', {
   host: 'localhost',
@@ -12,23 +11,6 @@ const app = express()
 
 app.use(express.json())
 const port = 3000
-const url = `mongodb://localhost/todo`
-//connection to MongoDB
-const connectMongoDB = async () => {
-  try {
-    const connection = await mongoose.connect(url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-    });
-    console.log(`MongoDB is connected: ${connection.connection.host}`)
-  } catch (err) {
-    console.log('Error with MongoDB');
-    process.exit(1)
-
-  }
-}
-connectMongoDB();
 
 //Connect to Mysql DB
 const connectMysqlDB = async () => {
@@ -42,11 +24,8 @@ const connectMysqlDB = async () => {
 connectMysqlDB();
 
 //Getting models
-const User = require('./models/User');
-const Todo = require('./models/Todo');
-
-const UserSql = require("./models/mysql/User")(connection, sequelize);
-const TodoSql = require("./models/mysql/Todo")(connection, sequelize);
+const User = require("./models/mysql/User")(connection, sequelize);
+const Todo = require("./models/mysql/Todo")(connection, sequelize);
 connection.sync();
 
 
