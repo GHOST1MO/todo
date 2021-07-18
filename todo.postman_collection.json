@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "da02d628-a256-4866-8d8c-b02eb91bd7fd",
+		"name": "todo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/update-todo",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "user",
+						"value": "abd",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"60f39a7df6d100476c27dc25\",\r\n    \"subject\":\"go home ella updatedaaxx\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/update-todo",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"update-todo"
+					]
+				},
+				"description": "Add Todo"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/add-todo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "user",
+						"value": "abd",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"subject\":\"Buy Milk\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/add-todo",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"add-todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/delete-todo",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "user",
+						"value": "abd",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"60f398b207f9b14b54db75b3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/delete-todo",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"delete-todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/get-info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "user",
+						"value": "Ella",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"60f39d7152f1ca43987a5921\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/get-info",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"get-info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/get-all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "user",
+						"value": "Ella",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"60f39d7152f1ca43987a5921\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/get-info",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"get-info"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
