@@ -1,12 +1,20 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const sequelize = require("sequelize");
+const connection = new sequelize('todo', 'root', '', {
+  host: 'localhost',
+  dialect: 'mysql'
+});
+
+
+
 const app = express()
 
 app.use(express.json())
 const port = 3000
 const url = `mongodb://localhost/todo`
-//connection to DB
-const connectDB = async () => {
+//connection to MongoDB
+const connectMongoDB = async () => {
   try {
     const connection = await mongoose.connect(url, {
       useNewUrlParser: true,
@@ -20,18 +28,35 @@ const connectDB = async () => {
 
   }
 }
-connectDB();
+connectMongoDB();
+
+//Connect to Mysql DB
+const connectMysqlDB = async () => {
+  try {
+    await connection.authenticate();
+    console.log('Connection to Mysql has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to Mysql database:', error);
+  }
+}
+connectMysqlDB();
+
 //Getting models
 const User = require('./models/User');
 const Todo = require('./models/Todo');
 
-const checkUser = async (req, res,next) =>{
+const UserSql = require("./models/mysql/User")(connection, sequelize);
+const TodoSql = require("./models/mysql/Todo")(connection, sequelize);
+connection.sync();
+
+
+const checkUser = async (req, res, next) => {
   const user = req.get("user");
   console.log(user);
-  var result = await User.find({"username": user});
+  var result = await User.find({ "username": user });
   console.log(result.length);
-  if (!result.length){
-    res.send({"status":"error","msg":"user not exist"})
+  if (!result.length) {
+    res.send({ "status": "error", "msg": "user not exist" })
     return
   }
   req.userId = result[0]._id;
