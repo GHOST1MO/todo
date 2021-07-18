@@ -39,7 +39,13 @@ const checkUser = async (req, res,next) =>{
 
   next();
 }
-
+//Routes
+//get todo info
+app.get('/get-all',checkUser, async (req, res) => {
+  const userId = req.userId.toString();
+  const todo = await Todo.find({userId:userId});
+  res.send(todo);
+})
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
